@@ -1,13 +1,11 @@
 <?php
+Route::redirect('/', '/home');
+Route::redirect('/index', '/home');
 
-Route::get('/home/{id}', 'HomeController@prueba');
-
-Route::get('/index', 'HomeController@index');
-
-// Route::get('/login', 'HomeController@login');
-
-Route::resource('/productos', 'ProductosController');
+Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('/productos', 'ProductosController')->middleware('auth');
+
+Route::resource('/pedido', 'PedidoController');

@@ -3,7 +3,7 @@
 @section('title', 'Producto')
 
 @section('content')
-
+    
   <main role="main">
       <div class="container marketing">
           <div class="row align-items-center">
