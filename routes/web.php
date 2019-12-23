@@ -8,4 +8,4 @@ Auth::routes();
 
 Route::resource('/productos', 'ProductosController')->middleware('auth');
 
-Route::resource('/pedido', 'PedidoController');
+Route::resource('/pedido', 'PedidosController');
