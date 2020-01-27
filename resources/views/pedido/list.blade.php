@@ -3,7 +3,14 @@
 @section('title', 'Pedidos')
 
 @section('content')
-    <boton-add-pedido></boton-add-pedido>
-    <targeta-component></targeta-component>
-    <modal-create-pedido></modal-create-pedido>
+
+    <div class="" id="targeta">
+
+    </div>
+   {{--  <main role="main">
+        <div class="" id="fromNewProducto">
+
+        </div>
+    </main> --}}
+
   @endsection

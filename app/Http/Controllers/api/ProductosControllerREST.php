@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\api;
 
 use Illuminate\Http\Request;
 use App\Producto;
 use App\Http\Requests\StoreProductoRequest;
+use App\Http\Controllers\Controller;
 
-class ProductosController extends Controller
+class ProductosControllerREST extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,22 +17,8 @@ class ProductosController extends Controller
     public function index(Request $request)
     {
         $productos = Producto::all();
-        if ($request->ajax()) {
-            return response()->json($productos);
-        }
 
-        return view('productos.list', compact('productos'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function create(Request $request)
-    {
-        $request->user()->authorizeRoles('ROLE_ADMIN');
-        return view('productos.new');
+        return response()->json($productos);
     }
 
     /**
@@ -53,7 +40,7 @@ class ProductosController extends Controller
         $producto->imagen = $name;
         $producto->save();
 
-        return redirect()->action('ProductosController@index');
+        return response()->json($producto);
     }
 
     /**
@@ -66,7 +53,7 @@ class ProductosController extends Controller
     {
         $producto = Producto::find($id);
 
-        return view('productos.show', compact('producto'));
+        return response()->json($producto);
     }
 
     /**
@@ -78,7 +65,7 @@ class ProductosController extends Controller
     public function edit($id)
     {
         $producto = Producto::find($id);
-        return view('productos.edit', compact('producto'));
+        return response()->json($producto);
     }
 
     /**
@@ -107,7 +94,7 @@ class ProductosController extends Controller
         }
         $producto->save();
 
-        return redirect()->action('ProductosController@show', [$id])->with('status', 'Guardado el producto');
+        return response()->json($producto);
     }
 
     /**
@@ -123,6 +110,6 @@ class ProductosController extends Controller
         \File::delete($file_path);
         $producto->delete();
 
-        return redirect()->action('ProductosController@index');
+        return "0";
     }
 }
