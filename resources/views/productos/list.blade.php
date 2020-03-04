@@ -15,7 +15,7 @@
               <div class="card-body">
                 <h5 class="card-title">{{ $producto->nombre }}</h5>
                 <p class="card-text"><p>{{ $producto->descripcion }}</p></p>
-                <a href="/productos/{{ $producto->id }}" class="btn btn-primary">ver mas</a> 
+                <a href="/productos/{{ $producto->id }}" class="btn btn-primary">ver mas</a>
                 {{-- @auth('ROLE_ADMIN')
 
                 @endauth --}}

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Pedido;
 
-class PedidoController extends Controller
+class PedidosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +36,19 @@ class PedidoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->ajax()) {
+            $pedido = new Pedido();
+            $pedido->cliente_id = Auth::id();
+            $pedido->producto_id = $request->input('producto');
+            $pedido->save();
+
+            return response()->json([
+                "message" => "Se realizo el pedido",
+                "producto" => $pedido,
+            ], 200);
+        }
+
+        return redirect()->action('PedidosController@index');
     }
 
     /**

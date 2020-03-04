@@ -5,10 +5,16 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Pedido;
 
 class User extends Authenticatable
 {
     use Notifiable;
+
+    public function pedidos()
+    {
+        return $this->hasMany(Pedido::class);
+    }
 
     public function roles()
     {

@@ -10,12 +10,15 @@ class ProductosController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $productos = Producto::all();
+        if ($request->ajax()) {
+            return response()->json($productos);
+        }
 
         return view('productos.list', compact('productos'));
     }
